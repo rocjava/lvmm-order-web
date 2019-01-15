@@ -1,6 +1,7 @@
 package com.lvmama.order.controller;
 
 
+import org.apache.log4j.Logger;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,9 @@ import java.util.Map;
 @Controller
 @EnableAutoConfiguration
 public class HelloSpringBoot {
+
+    final Logger logger = Logger.getLogger(HelloSpringBoot.class);
+
     @RequestMapping("/request")
     public String request(HttpServletRequest request){
         request.setAttribute("name", "Penns");
@@ -35,6 +39,8 @@ public class HelloSpringBoot {
         ModelAndView mav = new ModelAndView();
         mav.addObject("name", "Test");
         mav.setViewName("index");
+        String logSuffix = String.format("orderId=%d performed successfully.", orderId);
+        logger.info(logSuffix);
         return mav;
     }
 
